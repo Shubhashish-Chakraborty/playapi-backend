@@ -142,5 +142,5 @@ Contributions are welcome! To contribute:
 
 For any inquiries or feedback, reach out to me:
 
-- **GitHub**: [https://github.com/Shubhashish-Chakraborty](https://github.com/Shubhashish-Chakraborty)
+- **GitHub**: [MyLinktree](https://shubhlinks.vercel.app/)
 - **Email**: shubhashish147@gmail.com
