@@ -1,6 +1,7 @@
-const { ServerModel } = require('../schemas/db');
+import { Request , Response , NextFunction } from "express";
+import { ServerModel } from "../schemas/db";
 
-async function initializeRequestCount() {
+export async function initializeRequestCount() {
     try {
         // Check if the document exists
         const existingDoc = await ServerModel.findOne({ id: "reqCount" });
@@ -16,14 +17,15 @@ async function initializeRequestCount() {
     }
 }
 
-async function increaseReqCount(req, res, next) {
+export async function increaseReqCount(req:Request, res:Response, next:NextFunction) {
     try {
         // Find the document
         const serverData = await ServerModel.findOne({ id: "reqCount" });
         if (!serverData) {
-            return res.status(404).json({
+            res.status(404).json({
                 message: "Document with id 'reqCount' not found!"
             });
+            return
         }
 
         // Update the request count
@@ -41,8 +43,3 @@ async function increaseReqCount(req, res, next) {
         });
     }
 }
-
-module.exports = {
-    increaseReqCount: increaseReqCount,
-    initializeRequestCount: initializeRequestCount
-};

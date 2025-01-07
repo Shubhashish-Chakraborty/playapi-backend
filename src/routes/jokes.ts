@@ -1,12 +1,12 @@
-const express = require('express');
-const { Router } = require('express');
+import express from 'express';
+import { Router } from 'express';
+import { z } from 'zod';
+
 const app = express();
-const jokesRouter = Router();
-const { z } = require('zod');
+export const jokesRouter = Router();
 
-const { JokesModel } = require('../schemas/db');
-
-const { increaseReqCount } = require("../middlewares/requestCounter");
+import { JokesModel } from '../schemas/db';
+import { increaseReqCount } from '../middlewares/requestCounter';
 
 // GET ALL THE JOKES PRESENT IN THE DATABASE!
 jokesRouter.get('/' , increaseReqCount , async (req , res) => {
@@ -112,8 +112,3 @@ jokesRouter.get('/:id' , increaseReqCount , async (req , res) => {
         })
     }
 })
-
-
-module.exports = {
-    jokesRouter: jokesRouter
-}

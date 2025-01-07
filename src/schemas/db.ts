@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
+
 const Schema = mongoose.Schema;
-const ObjectId = mongoose.ObjectId;
+const ObjectId = mongoose.Types.ObjectId;
 
 const AutoIncrement = require('mongoose-sequence')(mongoose); // Import the auto-increment plugin
 
@@ -21,11 +22,5 @@ JokesSchema.plugin(AutoIncrement, { inc_field: 'jokeNumber' });
 
 //create models
 
-const JokesModel = mongoose.model('jokes' , JokesSchema);
-const ServerModel = mongoose.model('serverdata' , ServerSchema);
-
-// Export the model
-module.exports = {
-    JokesModel: JokesModel,
-    ServerModel: ServerModel
-}
+export const JokesModel = mongoose.model('jokes' , JokesSchema);
+export const ServerModel = mongoose.model('serverdata' , ServerSchema);

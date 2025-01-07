@@ -1,15 +1,12 @@
-require('dotenv').config();
+import express from "express";
+import mongoose from "mongoose";
 
-const express = require('express');
-const mongoose = require('mongoose');
+import { MONGO_URL } from "./config";
+import { PORT } from "./config";
 
-const { increaseReqCount , initializeRequestCount } = require('./middlewares/requestCounter');
+import { increaseReqCount , initializeRequestCount } from "./middlewares/requestCounter";
+import { jokesRouter } from "./routes/jokes";
 
-const { ServerModel } = require('./schemas/db');
-
-const { jokesRouter } = require('./routes/jokes');
-
-const PORT = process.env.PORT;
 const app = express();
 
 app.use(express.json());
@@ -24,7 +21,7 @@ app.get("/" , (req , res) => {
 })
 
 async function main() {
-    await mongoose.connect(process.env.MONGO_URL);
+    await mongoose.connect(MONGO_URL);
     app.listen(PORT , () => {
         console.log(`Backend Hosted: http://localhost:${PORT}`)
     })
